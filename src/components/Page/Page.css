@@ -1,0 +1,12 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    background: azure;
+}
+
+.Page {
+    color: #343434;
+    font-size: 16px;
+    line-height: 28px;
+    font-family: 'Open Sans', sans-serif;
+}

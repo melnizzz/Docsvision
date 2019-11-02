@@ -1,0 +1,22 @@
+.Building {
+    width: 150px;
+    margin: 10px;
+    padding: 10px;
+
+    text-align: center;
+    background: #d0f0f0;
+
+    border-radius: 5px;
+    box-shadow: 0 2px 4px 2px #a8c1c18f;
+}
+.Building:hover {
+    background: #d0f0f070;
+    cursor: pointer;
+}
+.Building:active {
+    box-shadow: inset 0 2px 4px 2px #a8c1c18f;
+}
+
+.Building img {
+    filter: brightness(0) contrast(0.1);
+}

@@ -1,7 +1,9 @@
-import React from 'react';
-import {IBuilding, IEquipment} from './typings';
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
+import {IBuilding, IData, IEquipment} from './src/typings';
+import {Page} from './src/components/Page/Page';
 
-const scorocode = fetch('https://raw.githubusercontent.com/Scorocode/scorocode-SDK-JS/master/lib/browser/scorocode.js')
+fetch('https://raw.githubusercontent.com/Scorocode/scorocode-SDK-JS/master/lib/browser/scorocode.js')
     .then(res => res.text())
     .then(text => eval(`(function(){${text}})()`))
     .then(() => {
@@ -49,8 +51,15 @@ const scorocode = fetch('https://raw.githubusercontent.com/Scorocode/scorocode-S
                 .then(found => found.result);
         }
 
-        let buildings = getBuildings();
-        let equipment = getBuildings();
+        new Promise(async function (resolve) {
+            let buildings = await getBuildings();
+            let equipment = await getEquipment();
 
-        <Page />;
+            resolve({buildings, equipment});
+        }).then( ({buildings, equipment}: IData) => {
+            ReactDOM.render(
+                <Page buildings={buildings} equipment={equipment}/>,
+                document.getElementById('root')
+            );
+        })
     });

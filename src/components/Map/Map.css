@@ -1,0 +1,26 @@
+.Map {
+    display: flex;
+    margin: 100px 60px;
+    width: 42.5vw;
+    height: min-content;
+    max-height: 80vh;
+    justify-content: space-around;
+    align-content: space-between;
+    flex-wrap: wrap;
+}
+
+.Map .Back {
+    position: fixed;
+    top: 10px;
+    left: 20px;
+
+    filter: contrast(0.1);
+}
+
+.Map .Back:hover {
+    filter: contrast(0.3);
+}
+
+.Map .Back:active {
+    filter: contrast(0.3) drop-shadow(0 2px 4px #737373);
+}

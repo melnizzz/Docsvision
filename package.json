@@ -1,0 +1,42 @@
+{
+  "name": "docsvision",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.tsx",
+  "dependencies": {
+    "@types/react": "^16.0.19",
+    "@types/react-dom": "^16.0.2",
+    "csstype": "^2.6.7",
+    "react": "^16.0.0",
+    "react-dom": "^16.11.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "css-loader": "^3.2.0",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "react": "^16.11.0",
+    "style-loader": "^1.0.0",
+    "ts-loader": "^6.2.1",
+    "typescript": "^3.6.4",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --mode production",
+    "dev": "webpack --mode development "
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/melnizzz/Docsvision.git"
+  },
+  "author": "melnizzz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/melnizzz/Docsvision/issues"
+  },
+  "homepage": "https://github.com/melnizzz/Docsvision#readme"
+}
