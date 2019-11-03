@@ -1,0 +1,63 @@
+.Menu {
+    position: fixed;
+    right: 5vw;
+    top: 100px;
+    width: 42.5vw;
+    height: 80vh;
+    padding: 20px;
+
+
+    background: azure;
+    border-radius: 10px;
+    box-shadow: 0 2px 16px 4px #a8c1c18f;
+
+    overflow: hidden;
+}
+
+.Menu-Room {
+    text-align: center;
+    margin: 0 auto;
+}
+
+.Equipments {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-content: flex-start;
+
+    height: calc(80vh - 40px);
+    margin-top: 10px;
+
+    overflow: auto;
+}
+
+.Equipment {
+    width: 150px;
+    height: min-content;
+    padding: 5px;
+    margin: 5px;
+
+    text-align: center;
+    background: #d0f0f0;
+
+    border-radius: 5px;
+    box-shadow: 0 2px 4px 2px #a8c1c18f;
+}
+
+.Equipment-Image {
+    margin: 0 auto;
+    padding: 10px;
+    display: block;
+
+    filter: contrast(0.1);
+}
+
+.Equipment-Name {
+    display: inline-block;
+}
+
+.Equipment-Count {
+    margin-left: 5px;
+    display: inline-block;
+}
+

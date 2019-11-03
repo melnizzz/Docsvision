@@ -12,7 +12,8 @@ interface IPageProps {
 export const Page: React.FunctionComponent<IPageProps> = props => {
     return (
         <div className={'Page'}>
-            <Map buildings={props.buildings}/>
+            <Map buildings={props.buildings} equipment={props.equipment} />
+            {/*<div className={'Menu'} />*/}
         </div>
     );
 };

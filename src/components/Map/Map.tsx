@@ -1,13 +1,15 @@
 import * as React from 'react';
 import {Building} from '../Building/Building';
-import {IBuilding, IRoom, isBuilding, Types} from '../../typings';
+import {IBuilding, IEquipment, IRoom, isBuilding, Types} from '../../typings';
 
 import './Map.css'
 import {Room} from '../Room/Room';
 import {Breadcrumbs} from '../Breadcrumbs/Breadcrumbs';
+import {Menu} from '../Menu/Menu';
 
 interface IMapProps {
     buildings: IBuilding[];
+    equipment: IEquipment[];
 }
 
 interface IMapState {
@@ -32,6 +34,7 @@ export class Map extends React.Component<IMapProps, IMapState> {
                 cur = elem;
                 children = elem.rooms.map((room, i) => {
                     room.parent = elem;
+                    if (!room.children && !room.equipment) room.equipment = this.props.equipment.filter((eq) => eq.room === room.id);
                     return <Room key={i} room={room} onClick={() => this.renderChildren(room)}/>;
                 })
 
@@ -40,11 +43,13 @@ export class Map extends React.Component<IMapProps, IMapState> {
                 if (elem.children) {
                     children = elem.children.map((room, i) => {
                         room.parent = elem;
-                        return <Room key={i}
-                                     room={room}
-                                     onClick={room.children ? () => this.renderChildren(room) : () => {}}
+                        if (!room.children && !room.equipment) room.equipment = this.props.equipment.filter((eq) => eq.room === room.id);
+                        return <Room key={i} room={room} onClick={() => this.renderChildren(room)}
                         />;
                     })
+                } else {
+                    children = this.state.children;
+                    if (!elem.equipment) elem.equipment = this.props.equipment.filter((eq) => eq.room === elem.id)
                 }
             }
 
@@ -68,16 +73,19 @@ export class Map extends React.Component<IMapProps, IMapState> {
         const {children, type, cur} = this.state;
         console.log('cur', cur);
         return (
-            <div className={'Map'}>
-                {type === Types.ROOM ?
-                    (<React.Fragment>
-                        <Breadcrumbs element={cur} onClick={this.renderChildren}/>
-                        <div className={'Back'} onClick={() => this.renderChildren(isBuilding(cur) ? null : cur.parent)}>
-                            <img src={'src/img/back.png'} alt={''} width={50} />
-                        </div>
-                    </React.Fragment>) :
-                    null}
-                {children}
+            <div className={'Page'} >
+                <div className={'Map'}>
+                    {type === Types.ROOM ?
+                        (<React.Fragment>
+                            <Breadcrumbs element={cur} onClick={this.renderChildren}/>
+                            <div className={'Back'} onClick={() => this.renderChildren(isBuilding(cur) ? null : cur.parent)}>
+                                <img src={'src/img/back.png'} alt={''} width={50} />
+                            </div>
+                        </React.Fragment>) :
+                        null}
+                    {children}
+                </div>
+                {(!cur || isBuilding(cur) || cur.children) ? null : <Menu equipment={this.props.equipment} room={cur}/>}
             </div>
         );
     }

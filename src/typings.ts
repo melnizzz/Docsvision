@@ -3,6 +3,7 @@ export interface IRoom {
     name: string;
     children?: IRoom[];
     parent?: IRoom | IBuilding;
+    equipment?: IEquipment[];
 }
 
 export interface IBuilding {
@@ -11,10 +12,6 @@ export interface IBuilding {
 
     createdAt: Date;
     updatedAt: Date;
-}
-
-export function isBuilding(value: IBuilding | IRoom): value is IBuilding {
-    return 'rooms' in value;
 }
 
 export interface IEquipment {
@@ -36,4 +33,9 @@ export const enum Types {
     BUILDING = 'building',
     ROOM = 'room',
 }
+
+export function isBuilding(value: IBuilding | IRoom): value is IBuilding {
+    return 'rooms' in value;
+}
+
 

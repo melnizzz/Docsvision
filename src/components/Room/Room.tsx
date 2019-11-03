@@ -11,6 +11,10 @@ interface IRoomProps {
 export const Room: React.FunctionComponent<IRoomProps> = props => {
     return (
         <div className={'Room'} onClick={props.onClick}>
+            {props.room.equipment ?
+                <div className={'Room-Count'}>
+                    {props.room.equipment.length}
+                </div> : null}
             <img className={'Room-Image'} src={'src/img/room.png'} alt={''} width={150} />
             <div className={'Room-Name'}>
                 {props.room.name}
