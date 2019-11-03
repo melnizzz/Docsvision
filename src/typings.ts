@@ -9,6 +9,7 @@ export interface IRoom {
 export interface IBuilding {
     name: string;
     rooms: IRoom[];
+    equipment?: IEquipment[];
 
     createdAt: Date;
     updatedAt: Date;

@@ -3,7 +3,7 @@
     right: 5vw;
     top: 100px;
     width: 42.5vw;
-    height: 80vh;
+    height: 75vh;
     padding: 20px;
 
 
@@ -14,7 +14,7 @@
     overflow: hidden;
 }
 
-.Menu-Room {
+.Menu-Room-Name {
     text-align: center;
     margin: 0 auto;
 }

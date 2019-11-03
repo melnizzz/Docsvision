@@ -1,11 +1,11 @@
 import * as React from 'react';
 import {Building} from '../Building/Building';
-import {IBuilding, IEquipment, IRoom, isBuilding, Types} from '../../typings';
-
-import './Map.css'
 import {Room} from '../Room/Room';
 import {Breadcrumbs} from '../Breadcrumbs/Breadcrumbs';
 import {Menu} from '../Menu/Menu';
+import {IBuilding, IEquipment, IRoom, isBuilding, Types} from '../../typings';
+
+import './Map.css'
 
 interface IMapProps {
     buildings: IBuilding[];
@@ -34,7 +34,6 @@ export class Map extends React.Component<IMapProps, IMapState> {
                 cur = elem;
                 children = elem.rooms.map((room, i) => {
                     room.parent = elem;
-                    if (!room.children && !room.equipment) room.equipment = this.props.equipment.filter((eq) => eq.room === room.id);
                     return <Room key={i} room={room} onClick={() => this.renderChildren(room)}/>;
                 })
 
@@ -43,13 +42,11 @@ export class Map extends React.Component<IMapProps, IMapState> {
                 if (elem.children) {
                     children = elem.children.map((room, i) => {
                         room.parent = elem;
-                        if (!room.children && !room.equipment) room.equipment = this.props.equipment.filter((eq) => eq.room === room.id);
                         return <Room key={i} room={room} onClick={() => this.renderChildren(room)}
                         />;
                     })
                 } else {
                     children = this.state.children;
-                    if (!elem.equipment) elem.equipment = this.props.equipment.filter((eq) => eq.room === elem.id)
                 }
             }
 
@@ -71,7 +68,7 @@ export class Map extends React.Component<IMapProps, IMapState> {
 
     render() {
         const {children, type, cur} = this.state;
-        console.log('cur', cur);
+
         return (
             <div className={'Page'} >
                 <div className={'Map'}>
@@ -85,7 +82,7 @@ export class Map extends React.Component<IMapProps, IMapState> {
                         null}
                     {children}
                 </div>
-                {(!cur || isBuilding(cur) || cur.children) ? null : <Menu equipment={this.props.equipment} room={cur}/>}
+                <Menu equipment={this.props.equipment} elem={cur}/>
             </div>
         );
     }
