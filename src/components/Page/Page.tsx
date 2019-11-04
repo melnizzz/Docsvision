@@ -1,12 +1,13 @@
 import * as React from 'react';
 import {Map} from '../Map/Map'
-import {IBuilding, IEquipment, IRoom, isBuilding} from '../../typings';
+import {IBuilding, IEquipment, IEvents, IRoom, isBuilding} from '../../typings';
 
 import './Page.css'
 
 interface IPageProps {
     buildings: IBuilding[];
     equipment: IEquipment[];
+    events: IEvents;
 }
 
 const matchEquipment = (elem: IRoom | IBuilding, equipment: IEquipment[]): IEquipment[] => {
@@ -35,7 +36,8 @@ export const Page: React.FunctionComponent<IPageProps> = props => {
     for (let p in props.buildings) matchEquipment(props.buildings[p], props.equipment);
     return (
         <div className={'Page'}>
-            <Map buildings={props.buildings} equipment={props.equipment} />
+            <Map buildings={props.buildings} equipment={props.equipment} events={props.events}/>
+            <div className={'Modal'} />
         </div>
     );
 };

@@ -3,13 +3,14 @@ import {Building} from '../Building/Building';
 import {Room} from '../Room/Room';
 import {Breadcrumbs} from '../Breadcrumbs/Breadcrumbs';
 import {Menu} from '../Menu/Menu';
-import {IBuilding, IEquipment, IRoom, isBuilding, Types} from '../../typings';
+import {IBuilding, IEquipment, IEvents, IRoom, isBuilding, Types} from '../../typings';
 
 import './Map.css'
 
 interface IMapProps {
     buildings: IBuilding[];
     equipment: IEquipment[];
+    events: IEvents;
 }
 
 interface IMapState {
@@ -70,7 +71,7 @@ export class Map extends React.Component<IMapProps, IMapState> {
         const {children, type, cur} = this.state;
 
         return (
-            <div className={'Page'} >
+            <React.Fragment>
                 <div className={'Map'}>
                     {type === Types.ROOM ?
                         (<React.Fragment>
@@ -82,8 +83,8 @@ export class Map extends React.Component<IMapProps, IMapState> {
                         null}
                     {children}
                 </div>
-                <Menu equipment={this.props.equipment} elem={cur}/>
-            </div>
+                <Menu equipment={this.props.equipment} elem={cur} events={this.props.events}/>
+            </React.Fragment>
         );
     }
 }

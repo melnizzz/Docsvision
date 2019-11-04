@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.tsx",
   "dependencies": {
-    "@types/react": "^16.0.19",
+    "@types/react": "^16.9.11",
     "@types/react-dom": "^16.0.2",
     "csstype": "^2.6.7",
     "react": "^16.0.0",

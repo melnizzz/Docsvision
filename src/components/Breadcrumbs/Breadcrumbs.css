@@ -9,4 +9,5 @@
 .Breadcrumbs-Crumb {
     display: inline-block;
     padding-right: 5px;
+    cursor: pointer;
 }

@@ -14,29 +14,34 @@ fetch('https://raw.githubusercontent.com/Scorocode/scorocode-SDK-JS/master/lib/b
             MasterKey: '659d718ff9664f6fafbdb79efc93cb34'
         });
 
-        function addEquipment(name: string, room: string, count: number): void {
+        function addEquipment(name: string, room: string, count: number) {
             let comp = new Scorocode.Object('equipment');
             comp.set('name', name);
             comp.set('room', room); // значение поля id комнаты
             comp.set('count', count);
             comp.save().then(() => {
                 console.info('Done');
+                start();
             });
         }
 
-        function deleteEquipment(id: string): void {
+        function deleteEquipment(id: string) {
             let equip = new Scorocode.Object('equipment');
             equip.getById(id).then((item) => {
                 equip.remove(item).then(() => {
                     console.info('Done');
+                    start();
                 });
             });
         }
 
-        function updateEquipment(id: string, name: string, count: number): void {
+        function updateEquipment(id: string, name: string, count: number) {
             let equip = new Scorocode.Object('equipment');
             equip.set('_id', id).set('name', name). set('count', count);
-            equip.save().then(() => console.info('done'));
+            equip.save().then(() => {
+                console.info('Done');
+                start();
+            });
         }
 
         function getBuildings(): IBuilding[] {
@@ -51,15 +56,20 @@ fetch('https://raw.githubusercontent.com/Scorocode/scorocode-SDK-JS/master/lib/b
                 .then(found => found.result);
         }
 
-        new Promise(async function (resolve) {
-            let buildings = await getBuildings();
-            let equipment = await getEquipment();
+        function start() {
+            new Promise(async function (resolve) {
+                let buildings = await getBuildings();
+                let equipment = await getEquipment();
 
-            resolve({buildings, equipment});
-        }).then( ({buildings, equipment}: IData) => {
-            ReactDOM.render(
-                <Page buildings={buildings} equipment={equipment}/>,
-                document.getElementById('root')
-            );
-        })
+                resolve({buildings, equipment});
+            }).then( ({buildings, equipment}: IData) => {
+                ReactDOM.unmountComponentAtNode(document.getElementById('root'));
+                ReactDOM.render(
+                    <Page buildings={buildings} equipment={equipment} events={{ addEquipment, deleteEquipment, updateEquipment}}/>,
+                    document.getElementById('root')
+                );
+            })
+        }
+
+        start();
     });

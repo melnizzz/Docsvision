@@ -30,6 +30,12 @@ export interface IData {
     equipment: IEquipment[];
 }
 
+export interface IEvents {
+    addEquipment: (name: string, room: string, count: number) => void;
+    deleteEquipment: (id: string) => void;
+    updateEquipment: (id: string, name: string, count: number) => void;
+}
+
 export const enum Types {
     BUILDING = 'building',
     ROOM = 'room',
